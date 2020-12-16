@@ -1,3 +1,35 @@
+const anagramOneLine = (word1, word2) => [...word1].sort().toString() === [...word2].sort().toString();
+
+describe('the anagramOneLine function', () => {
+    it('returns true same word', () => {
+        expect(anagramOneLine('hello', 'hello')).toEqual(true);
+    });
+    it('returns true for reversed word', () => {
+        expect(anagramOneLine('hello', 'olleh')).toEqual(true);
+    });
+    it('returns true for mixed word', () => {
+        expect(anagramOneLine('hello', 'ehlol')).toEqual(true);
+    });
+    it('returns false for different lengths but same letters', () => {
+        expect(anagramOneLine('hellohello', 'hello')).toEqual(false);
+    });
+    it('returns false for different words of same length', () => {
+        expect(anagramOneLine('hello', 'world')).toEqual(false);
+    });
+    it('returns false for words with same characters but different count', () => {
+        expect(anagramOneLine('hello', 'heelo')).toEqual(false);
+    });
+    it('returns false for words with same characters but different count of different letters', () => {
+        expect(anagramOneLine('hello', 'hhelo')).toEqual(false);
+    });
+    it('returns false for whitespace padded words', () => {
+        expect(anagramOneLine('hello     ', 'hello')).toEqual(false);
+    });
+    it('returns false for empty string', () => {
+        expect(anagramOneLine('hello', '')).toEqual(false);
+    });
+});
+
 const anagramByArraySpread = (word1, word2) => {
     const wordArray1 = [...word1].sort();
     const wordArray2 = [...word2].sort();
